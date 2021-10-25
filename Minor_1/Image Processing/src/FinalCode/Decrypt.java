@@ -1,4 +1,4 @@
-
+package Minor;
 import java.io.IOException;
 
 import java.awt.image.BufferedImage;
@@ -44,9 +44,13 @@ private void getSecretImage(BufferedImage encryptedImage) throws IOException {
 				for(int x=0 ; x<eWidth ; x++)
 				{
 					int c = encryptedImage.getRGB(x,y);// c will return the colour of that pixel specified by x,y coordinates
-					eBlue[num] = (c & 0x000000F)<<4;// gets red component from c
+					/*eBlue[num] = (c & 0x000000F)<<4;// gets red component from c
 					eGreen[num] = (c & 0x00000F00)<<4;// gets green component from c 
-					eRed[num] = (c & 0x000F0000)<<4;// gets blue component from c
+					eRed[num] = (c & 0x000F0000)<<4;*/// gets blue component from c
+					eBlue[num] = (c & 0x000001F)<<3;// gets red component from c
+					eGreen[num] = (c & 0x00001F00)<<3;// gets green component from c 
+					eRed[num] = (c & 0x001F0000)<<3;// gets blue component from c
+
 					num++;
 				}	
 			}
