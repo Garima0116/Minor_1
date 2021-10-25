@@ -1,5 +1,3 @@
-package Minor;
-
 
 
 import java.io.IOException;
