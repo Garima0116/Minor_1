@@ -15,20 +15,28 @@ public class Decrypt {
 	
 	BufferedImage encryptedImage;
 	
-	Decrypt(String encrypted) throws IOException {
-		File eImage;
+	Decrypt(String encrypted, String key) throws IOException {
+		 File eImage;
 		 eImage = new File(encrypted); 
 		 encryptedImage = ImageIO.read(eImage);
-		 getSecretImage(encryptedImage);
+		 
+		 MatchKey matchKeyObj = new MatchKey(encryptedImage, key);
+		 
+		 if(matchKeyObj.status==true) {
+			 
+			 getSecretImage(encryptedImage);
+		 }
+		 else {
+			 CreateImage result = new CreateImage(encryptedImage);
+			
+		 }
 		 
 	}
 	
-	
-//	shifting the bits in order to retrieve the secret image 
 private void getSecretImage(BufferedImage encryptedImage) throws IOException {
 	
 			int num;
-			int eHeight = encryptedImage.getHeight(); 
+			int eHeight = encryptedImage.getHeight(); // getting height and width of each image
 			int eWidth  = encryptedImage.getWidth();
 			
 			
@@ -39,18 +47,14 @@ private void getSecretImage(BufferedImage encryptedImage) throws IOException {
 			
 			
 			num=0;
-			for(int y=0 ; y<eHeight ; y++)		
+			for(int y=0 ; y<eHeight ; y++)		// running the loop to cover all pixels of the image to be hidden in a rowwise manner
 			{
 				for(int x=0 ; x<eWidth ; x++)
 				{
 					int c = encryptedImage.getRGB(x,y);// c will return the colour of that pixel specified by x,y coordinates
-					/*eBlue[num] = (c & 0x000000F)<<4;// gets red component from c
-					eGreen[num] = (c & 0x00000F00)<<4;// gets green component from c 
-					eRed[num] = (c & 0x000F0000)<<4;*/// gets blue component from c
 					eBlue[num] = (c & 0x000001F)<<3;// gets red component from c
 					eGreen[num] = (c & 0x00001F00)<<3;// gets green component from c 
 					eRed[num] = (c & 0x001F0000)<<3;// gets blue component from c
-
 					num++;
 				}	
 			}
@@ -62,5 +66,6 @@ private void getSecretImage(BufferedImage encryptedImage) throws IOException {
 		new CreateImage(eRed,eGreen,eBlue,eHeight,eWidth);
 			
 			
+	System.out.println("Done");
 		}
 	}

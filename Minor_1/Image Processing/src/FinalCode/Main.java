@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Main {
 
-	static String target, secret, embedded, list;
+	static String target, secret, encrypted, list, key;
 	public static void main(String[] args) throws IOException {
 		
 		int choice ;
@@ -34,15 +34,19 @@ public class Main {
 			System.out.println("Enter the path of the folder containing list images for constructing mosaic:");
 			list =  getInputPath();
 			
-			mosaic obj = new mosaic(target,list);
-			new Encrypt(obj,secret);
-			
+			mosaic mosaicObj = new mosaic(target,list);
+			Encrypt encryptObj=new Encrypt(mosaicObj,secret);
+			new GenerateKey(encryptObj.resultImage);
 			break;
 		
 		case 2:
 			System.out.println("Enter the path of hidden image:");
-			embedded = getInputPath();
-			new Decrypt(embedded);
+			scan.nextLine();
+			encrypted = scan.nextLine();
+			
+			System.out.println("Enter the secret key:");
+			key = scan.nextLine();
+			new Decrypt(encrypted, key);
 			break;
 			
 		case 3:
@@ -53,22 +57,17 @@ public class Main {
 			System.out.println("Wrong Choice............Terminating ");
 			System.exit(1);
 			
-		scan.close();
-			
 		}
 		
 		
 	
-	}
-	
-	// getting input path strings
+	}	
 	
 	private static String getInputPath() {
 		
 		String path;
 		Scanner scan = new Scanner(System.in);
 		path = scan.nextLine();
-		
 		return(path);
 	}
 		

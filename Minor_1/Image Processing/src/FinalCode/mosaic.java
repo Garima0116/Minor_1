@@ -12,8 +12,8 @@ public class mosaic
 {
 
 
-private static int xScale = 10;
-private static int yScale = 10;
+public static int xScale = 10;
+public static int yScale = 10;
 BufferedImage outputMosaic = null;
 
 

@@ -8,6 +8,11 @@ import javax.imageio.ImageIO;
 public class CreateImage {
 	
 	BufferedImage result=null;
+	
+	CreateImage(BufferedImage encrypted) throws IOException{
+		saveAs(encrypted);
+		
+	}
 
 	CreateImage(int[] Red, int[] Green, int[] Blue, int height, int width) throws IOException{
 	
@@ -16,13 +21,13 @@ public class CreateImage {
 	}
 	
 	
-	// generating the image
+	
 	private void setRGB(int[] Red, int[] Green, int[] Blue, int height, int width) throws IOException {
 		int pixel;
 		
 		result = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
 		int num=0;
-		for(int y=0 ; y<height ; y++)		// running the loop to cover all pixels of the image to be hidden in a rowwise manner
+		for(int y=0 ; y<height ; y++)		// running the loop to cover all pixels of the image to be hidden
 		{
 			for(int x=0 ; x<width ; x++)
 			{
@@ -35,8 +40,7 @@ public class CreateImage {
 		saveAs(result);
 	}
 	
-	// saving the image
-	private void saveAs(BufferedImage Result) throws IOException {
+	 void saveAs(BufferedImage Result) throws IOException {
 		
 		try (Scanner scan = new Scanner(System.in)) {
 			System.out.println("Enter the path along with the name of the image to be saved: ");
@@ -46,7 +50,7 @@ public class CreateImage {
 			ImageIO.write(Result, "png", resultFile);
 		}
 		
-		System.out.println("Done");
+		System.out.println("Yesss");
 		
 	}
 	
