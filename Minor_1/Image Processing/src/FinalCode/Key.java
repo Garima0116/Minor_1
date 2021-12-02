@@ -2,7 +2,7 @@ import java.awt.image.BufferedImage;
 public class Key {
 
 private int xScale = 10;
-private int yScale =10;
+private int yScale = 10;
 int passwordCharNo=20, blocks;
 static int count=0;
 char[] key = new char[ passwordCharNo];	
@@ -30,14 +30,14 @@ static int noOfYBlocks,noOfXBlocks;
 			
 			
 			
-			System.out.println(i);
-			System.out.println(num+".done");
-			num++;
+			//System.out.println(i);
+			//System.out.println(num+".done");
+			//num++;
 		}
 	}
 
 	 	int blockAvgRGB( int index){
-		 System.out.println("Index"+index);
+		// System.out.println("Index"+index);
 		 int avg;
 		 int row = index / noOfXBlocks;
 		 int column= index % noOfXBlocks;
@@ -57,7 +57,7 @@ static int noOfYBlocks,noOfXBlocks;
 		 int resolution = xScale*yScale;
 		 avg = ((sumR/resolution)+(sumG/resolution)+(sumB/resolution))/3;
 		 
-		 System.out.println(avg);
+		// System.out.println(avg);
 			  generate(avg);
 			  
 		 
@@ -67,22 +67,20 @@ static int noOfYBlocks,noOfXBlocks;
 
 	  void generate(int avg) {
 
-		 System.out.println(avg%26);
-		 System.out.println(avg%6);
+		// System.out.println(avg%26);
+		 //System.out.println(avg%6);
 		 key[count]=(char)avg;
-			if(count%3==0)
-				key[count] =(char)((avg%26)+64);
-			else if(count%3==1)
+			if(count%4==0)
 				key[count] =(char)((avg%26)+97);
+			else if(count%4==1)
+				key[count]=(char)((avg%10)+48);
+			else if(count%4==2)
+			    key[count] =(char)((avg%26)+64);
 			else
-				key[count] =(char)((avg%4)+35);
+				key[count] =(char)((avg%15)+33);
 			count++;				
 		
 	}
-
-	
-	
-	
 	
 }
 
