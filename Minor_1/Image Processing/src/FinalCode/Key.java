@@ -28,8 +28,6 @@ static int noOfYBlocks,noOfXBlocks;
 		
 			int  avg = blockAvgRGB(i);
 			
-			
-			
 			//System.out.println(i);
 			//System.out.println(num+".done");
 			//num++;
@@ -69,7 +67,7 @@ static int noOfYBlocks,noOfXBlocks;
 
 		// System.out.println(avg%26);
 		 //System.out.println(avg%6);
-		 key[count]=(char)avg;
+		// key[count]=(char)avg;
 			if(count%4==0)
 				key[count] =(char)((avg%26)+97);
 			else if(count%4==1)
