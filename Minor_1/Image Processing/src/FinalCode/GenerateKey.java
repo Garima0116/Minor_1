@@ -12,7 +12,7 @@ public class GenerateKey extends Key {
 	
 	void displayKey(){
 		String str = String.valueOf(key);
-		System.out.println("Store the key safely as it is displayed only once.");
+		System.out.println("Image has been hidden. The key is displayed only once. Store it safely.");
 		System.out.println("Key : " + str);
 	}
 	
